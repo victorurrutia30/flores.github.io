@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Animadas con Canción de YouTube</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff9d9;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .flower-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .flower {
+            width: 150px;
+            height: 250px;
+            position: relative;
+            animation: rise 2s ease-in-out, sway 3s ease-in-out infinite alternate;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Animación para que las flores suban desde abajo */
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Animación de balanceo suave */
+        @keyframes sway {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* Dibujar la flor usando SVG */
+        svg {
+            width: 150px;
+            height: 250px;
+        }
+
+        .stem {
+            fill: green;
+        }
+
+        .petal {
+            fill: yellow;
+            stroke: orange;
+            stroke-width: 2px;
+        }
+
+        .center {
+            fill: orange;
+        }
+
+        #youtube-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #audio-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #audio-controls button {
+            background-color: yellow;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #audio-controls button:hover {
+            background-color: orange;
+        }
+
+        /* Media Queries para pantallas de teléfono */
+        @media (max-width: 768px) {
+            .flower {
+                width: 100px;
+                height: 180px;
+            }
+
+            svg {
+                width: 100px;
+                height: 180px;
+            }
+
+            #audio-controls {
+                bottom: 10px;
+                left: 10px;
+            }
+
+            #youtube-player {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flower-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flower {
+                width: 80px;
+                height: 150px;
+            }
+
+            svg {
+                width: 80px;
+                height: 150px;
+            }
+
+            #audio-controls {
+                bottom: 5px;
+                left: 5px;
+            }
+
+            #youtube-player {
+                bottom: 5px;
+                right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor de las flores -->
+    <div class="flower-container">
+        <!-- Flor 1 -->
+        <div class="flower" style="animation-delay: 0s;">
+            <svg viewBox="0 0 150 250">
+                <rect class="stem" x="72" y="100" width="6" height="150"></rect>
+                <ellipse class="petal" cx="75" cy="75" rx="45" ry="30"></ellipse>
+                <ellipse class="petal" cx="110" cy="75" rx="30" ry="45" transform="rotate(45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="40" rx="30" ry="45"></ellipse>
+                <ellipse class="petal" cx="40" cy="75" rx="30" ry="45" transform="rotate(-45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="110" rx="30" ry="45"></ellipse>
+                <circle class="center" cx="75" cy="75" r="15"></circle>
+            </svg>
+        </div>
+
+        <!-- Flor 2 -->
+        <div class="flower" style="animation-delay: 0.5s;">
+            <svg viewBox="0 0 150 250">
+                <rect class="stem" x="72" y="100" width="6" height="150"></rect>
+                <ellipse class="petal" cx="75" cy="75" rx="45" ry="30"></ellipse>
+                <ellipse class="petal" cx="110" cy="75" rx="30" ry="45" transform="rotate(45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="40" rx="30" ry="45"></ellipse>
+                <ellipse class="petal" cx="40" cy="75" rx="30" ry="45" transform="rotate(-45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="110" rx="30" ry="45"></ellipse>
+                <circle class="center" cx="75" cy="75" r="15"></circle>
+            </svg>
+        </div>
+
+        <!-- Flor 3 -->
+        <div class="flower" style="animation-delay: 1s;">
+            <svg viewBox="0 0 150 250">
+                <rect class="stem" x="72" y="100" width="6" height="150"></rect>
+                <ellipse class="petal" cx="75" cy="75" rx="45" ry="30"></ellipse>
+                <ellipse class="petal" cx="110" cy="75" rx="30" ry="45" transform="rotate(45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="40" rx="30" ry="45"></ellipse>
+                <ellipse class="petal" cx="40" cy="75" rx="30" ry="45" transform="rotate(-45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="110" rx="30" ry="45"></ellipse>
+                <circle class="center" cx="75" cy="75" r="15"></circle>
+            </svg>
+        </div>
+
+        <!-- Flor 4 -->
+        <div class="flower" style="animation-delay: 1.5s;">
+            <svg viewBox="0 0 150 250">
+                <rect class="stem" x="72" y="100" width="6" height="150"></rect>
+                <ellipse class="petal" cx="75" cy="75" rx="45" ry="30"></ellipse>
+                <ellipse class="petal" cx="110" cy="75" rx="30" ry="45" transform="rotate(45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="40" rx="30" ry="45"></ellipse>
+                <ellipse class="petal" cx="40" cy="75" rx="30" ry="45" transform="rotate(-45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="110" rx="30" ry="45"></ellipse>
+                <circle class="center" cx="75" cy="75" r="15"></circle>
+            </svg>
+        </div>
+
+        <!-- Flor 5 -->
+        <div class="flower" style="animation-delay: 2s;">
+            <svg viewBox="0 0 150 250">
+                <rect class="stem" x="72" y="100" width="6" height="150"></rect>
+                <ellipse class="petal" cx="75" cy="75" rx="45" ry="30"></ellipse>
+                <ellipse class="petal" cx="110" cy="75" rx="30" ry="45" transform="rotate(45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="40" rx="30" ry="45"></ellipse>
+                <ellipse class="petal" cx="40" cy="75" rx="30" ry="45" transform="rotate(-45, 75, 75)"></ellipse>
+                <ellipse class="petal" cx="75" cy="110" rx="30" ry="45"></ellipse>
+                <circle class="center" cx="75" cy="75" r="15"></circle>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Reproductor de YouTube -->
+    <div id="youtube-player"></div>
+
+    <!-- Controles de audio -->
+    <div id="audio-controls">
+        <button onclick="toggleMusic()">Pausar/Reproducir Música</button>
+    </div>
+
+    <script>
+        // Función de la API de YouTube
+        let player;
+        const startTime = 47; // Cambia este valor al segundo que quieras que empiece el video
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: 'S7gMzYqXIZc',  // Cambia por la ID del video que quieras reproducir
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.seekTo(startTime, true); // Empieza el video en el segundo especificado
+            event.target.playVideo();
+        }
+
+        function toggleMusic() {
+            if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        }
+
+        // Cargar API de YouTube de forma asíncrona
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    </script>
+</body>
+</html>
